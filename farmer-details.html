@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agriculture Platform</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>/* Reset and Base Styles */ * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(to bottom, #f0fdf4, #dcfce7); min-height: 100vh; color: #374151; } .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; } /* Header */ .header { background: white; border-bottom: 1px solid #bbf7d0; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); } .header-content { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .logo { display: flex; align-items: center; gap: 0.75rem; } .logo i { font-size: 2rem; color: #16a34a; } .logo-text h1 { font-size: 1.5rem; font-weight: bold; color: #166534; margin-bottom: 0.25rem; } .logo-text p { font-size: 0.875rem; color: #16a34a; } .language-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border: 1px solid #bbf7d0; background: white; border-radius: 0.375rem; cursor: pointer; transition: all 0.2s; } .language-btn:hover { background: #f0fdf4; } /* Views */ .view { display: none; padding: 2rem 0; } .view.active { display: block; } /* Dashboard */ .dashboard-header { margin-bottom: 2rem; } .dashboard-header h2 { font-size: 2rem; font-weight: bold; color: #166534; margin-bottom: 0.5rem; } .dashboard-header p { color: #16a34a; } /* Cards */ .card { background: white; border: 1px solid #bbf7d0; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); margin-bottom: 2rem; } .card-header { background: #f0fdf4; padding: 1.5rem; border-bottom: 1px solid #bbf7d0; } .card-header h3 { font-size: 1.25rem; font-weight: 600; color: #166534; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; } .card-header p { color: #16a34a; font-size: 0.875rem; } .card-content { padding: 1.5rem; } /* Form Sections */ .form-sections { display: flex; flex-direction: column; gap: 2rem; } .form-section { border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1.5rem; background: #fafafa; } .section-title { font-size: 1.125rem; font-weight: 600; color: #374151; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb; } .section-title i { color: #16a34a; } /* Forms */ .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; } .form-group { margin-bottom: 1.5rem; } .form-group label { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #374151; } .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid #bbf7d0; border-radius: 0.375rem; font-size: 1rem; transition: border-color 0.2s; background: white; } .form-group input:focus, .form-group select:focus { outline: none; border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1); } .help-text { display: block; font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; } .input-group { display: flex; gap: 0.5rem; } .input-group input { flex: 1; } .input-group select { width: 8rem; } /* pH Input Styling */ input[type="number"] { -moz-appearance: textfield; } input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } /* Land Type Radio Groups */ .land-type-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; } .land-type-option { position: relative; } .land-type-option input[type="radio"] { position: absolute; opacity: 0; } .land-type-option label { display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s; background: white; } .land-type-option input[type="radio"]:checked + label { background: #f0fdf4; border-color: #16a34a; } .land-type-option label:hover { background: #f9fafb; border-color: #d1d5db; } .land-type-option input[type="radio"]:checked + label:hover { background: #f0fdf4; border-color: #16a34a; } .land-type-icon { font-size: 1.5rem; width: 2rem; text-align: center; } .land-type-icon.nahri { color: #2563eb; } .land-type-icon.birani { color: #059669; } .land-type-info h4 { font-weight: 600; color: #374151; margin-bottom: 0.25rem; } .land-type-info p { font-size: 0.875rem; color: #6b7280; } /* Buttons */ .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 0.375rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.2s; border: none; font-size: 0.875rem; } .btn-primary { background: #16a34a; color: white; } .btn-primary:hover { background: #15803d; } .btn-primary:disabled { background: #9ca3af; cursor: not-allowed; } .btn-outline { background: transparent; color: #16a34a; border: 1px solid #bbf7d0; } .btn-outline:hover { background: #f0fdf4; } .btn-full { width: 100%; justify-content: center; padding: 1rem; font-size: 1rem; } .button-group { display: flex; gap: 1rem; } .button-group .btn { flex: 1; } /* Progress Bar */ .progress-section { max-width: 64rem; margin: 0 auto 2rem; } .progress-info { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; } .progress-bar { flex: 1; height: 0.5rem; background: #e5e7eb; border-radius: 0.25rem; overflow: hidden; } .progress-fill { height: 100%; background: #16a34a; transition: width 0.3s; width: 0%; } .progress-steps { display: flex; justify-content: space-between; font-size: 0.75rem; color: #6b7280; } /* Field Tabs */ .field-tabs { max-width: 64rem; margin: 0 auto 1rem; } .tabs-container { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; } .tabs-list { display: flex; flex-wrap: wrap; gap: 0.5rem; flex: 1; } .field-tab { display: flex; align-items: center; gap: 0.25rem; padding: 0.5rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; cursor: pointer; transition: all 0.2s; } .field-tab.active { background: #16a34a; color: white; } .field-tab:not(.active) { background: white; color: #16a34a; border: 1px solid #bbf7d0; } .field-tab:not(.active):hover { background: #f0fdf4; } .field-tab .remove-btn { margin-left: 0.25rem; color: #ef4444; cursor: pointer; font-weight: bold; } .add-field-btn { white-space: nowrap; } /* Steps */ .step { display: none; max-width: 64rem; margin: 0 auto; } .step.active { display: block; } /* Radio Groups */ .radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; } .radio-option { position: relative; } .radio-option input[type="radio"] { position: absolute; opacity: 0; } .radio-option label { display: flex; align-items: center; gap: 0.5rem; padding: 1rem; border: 1px solid #bbf7d0; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s; } .radio-option input[type="radio"]:checked + label { background: #f0fdf4; border-color: #16a34a; } .radio-option label:hover { background: #f0fdf4; } .radio-title { font-weight: 500; } .radio-subtitle { font-size: 0.75rem; color: #6b7280; } /* Info Message */ .info-message { display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 0.5rem; margin-bottom: 1.5rem; } .info-message i { color: #2563eb; margin-top: 0.125rem; } .info-message h4 { font-weight: 500; color: #1e40af; margin-bottom: 0.25rem; } .info-message p { font-size: 0.875rem; color: #2563eb; } /* Farms Grid */ .farms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; } .farm-card { background: white; border: 1px solid #d1fae5; border-radius: 0.5rem; padding: 1.5rem; transition: box-shadow 0.2s; } .farm-card:hover { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); } .farm-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; } .farm-info h4 { font-size: 1.125rem; color: #166534; margin-bottom: 0.25rem; } .farm-location { display: flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; color: #6b7280; } .delete-btn { color: #ef4444; background: none; border: none; cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; transition: background 0.2s; } .delete-btn:hover { background: #fef2f2; } .farm-stats { margin-bottom: 1rem; } .farm-stat { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; font-size: 0.875rem; } .badge { background: #f3f4f6; color: #374151; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; } /* Empty State */ .empty-state { text-align: center; padding: 3rem; color: #6b7280; } .empty-state i { font-size: 4rem; color: #d1d5db; margin-bottom: 1rem; } .empty-state h3 { font-size: 1.125rem; margin-bottom: 0.5rem; } /* Results */ .field-result { margin-bottom: 2rem; border: 1px solid #d1fae5; border-radius: 0.5rem; padding: 1.5rem; background: rgba(240, 253, 244, 0.3); } .field-result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; } .field-result-title { font-size: 1.25rem; font-weight: bold; color: #166534; display: flex; align-items: center; gap: 0.5rem; } .field-conditions { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; padding: 1rem; background: white; border: 1px solid #bbf7d0; border-radius: 0.5rem; } .condition { text-align: center; } .condition i { font-size: 1.5rem; margin-bottom: 0.5rem; } .condition-label { font-size: 0.75rem; color: #6b7280; margin-bottom: 0.25rem; } .condition-value { font-weight: 600; font-size: 0.875rem; text-transform: capitalize; } .recommendations-section { margin-bottom: 1.5rem; } .recommendations-title { font-size: 1.125rem; font-weight: 600; color: #166534; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; } .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; } .product-card { background: white; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1rem; transition: box-shadow 0.2s; } .product-card:hover { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); } .product-header { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; } .product-image { width: 3rem; height: 3rem; background: #f0fdf4; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #16a34a; } .product-info { flex: 1; } .product-badge { background: #dcfce7; color: #166534; padding: 0.125rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; margin-bottom: 0.25rem; display: inline-block; } .product-name { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; } .product-rating { display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; } .stars { color: #fbbf24; } .product-description { font-size: 0.75rem; color: #6b7280; margin-bottom: 0.5rem; } .product-footer { display: flex; justify-content: space-between; align-items: center; } .product-price { font-size: 0.875rem; font-weight: bold; color: #16a34a; } .product-actions { display: flex; gap: 0.25rem; } .btn-sm { padding: 0.25rem 0.5rem; font-size: 0.75rem; } /* Summary Card */ .summary-card { background: #f0fdf4; } .summary-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; } .summary-header i { color: #16a34a; font-size: 1.5rem; } .summary-header h3 { font-weight: 600; color: #166534; } .summary-header p { font-size: 0.875rem; color: #16a34a; } .summary-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; } .stat-number { font-size: 2rem; font-weight: bold; color: #15803d; } .stat-label { font-size: 0.875rem; color: #16a34a; } /* Responsive Design */ @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } .radio-group { grid-template-columns: 1fr; } .field-conditions { grid-template-columns: repeat(2, 1fr); } .summary-stats { grid-template-columns: repeat(2, 1fr); } .tabs-container { flex-direction: column; align-items: stretch; } .tabs-list { margin-bottom: 0.5rem; } .logo-text h1 { font-size: 1.25rem; } .dashboard-header h2 { font-size: 1.5rem; } .form-sections { gap: 1rem; } .form-section { padding: 1rem; } .land-type-group { grid-template-columns: 1fr; } } @media (max-width: 480px) { .container { padding: 0 0.5rem; } .card-content { padding: 1rem; } .field-conditions { grid-template-columns: 1fr; } .summary-stats { grid-template-columns: 1fr; } .products-grid { grid-template-columns: 1fr; } .form-section { padding: 0.75rem; } }</style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <div class="logo-text">
+                        <h1>Smart Agriculture Platform</h1>
+                        <p>Manage your farms and get personalized recommendations</p>
+                    </div>
+                </div>
+                <button class="language-btn" onclick="toggleLanguage()">
+                    <i class="fas fa-language"></i>
+                    <span id="lang-text">हिंदी</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard View -->
+    <div id="dashboard-view" class="view active">
+        <div class="container">
+            <div class="dashboard-header">
+                <div>
+                    <h2>Farm Dashboard</h2>
+                    <p>Manage all your farms in one place</p>
+                </div>
+            </div>
+
+            <!-- Add Farm Section -->
+            <div class="card add-farm-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-plus"></i> Add New Farm</h3>
+                    <p>Add a new farm to start getting personalized recommendations</p>
+                </div>
+                <div class="card-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="farmName">Farm Name *</label>
+                            <input type="text" id="farmName" placeholder="e.g., Green Valley Farm">
+                        </div>
+                        <div class="form-group">
+                            <label for="farmLocation">Farm Location *</label>
+                            <input type="text" id="farmLocation" placeholder="e.g., Punjab, India">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="addNewFarm()">
+                        <i class="fas fa-plus"></i> Create Farm
+                    </button>
+                </div>
+            </div>
+
+            <!-- Farms List -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-home"></i> My Farms</h3>
+                    <p id="farms-description">Start by adding your first farm to get personalized agricultural recommendations</p>
+                </div>
+                <div class="card-content">
+                    <div id="farms-container" class="farms-grid">
+                        <div class="empty-state">
+                            <i class="fas fa-home"></i>
+                            <h3>No farms added yet</h3>
+                            <p>Start by adding your first farm to get personalized agricultural recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Farm Details View -->
+    <div id="farm-details-view" class="view">
+        <div class="container">
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-info">
+                    <span>Progress</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span id="progress-text">0%</span>
+                </div>
+                <div class="progress-steps">
+                    <span>Farm Details</span>
+                    <span>Crop Info</span>
+                    <span>Recommendations</span>
+                </div>
+            </div>
+
+            <!-- Field Tabs -->
+            <div id="field-tabs" class="field-tabs">
+                <div class="tabs-container">
+                    <div id="field-tabs-list" class="tabs-list"></div>
+                    <button class="btn btn-outline add-field-btn" onclick="addNewField()">
+                        <i class="fas fa-plus"></i> Add Field
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 1: Farm Details -->
+            <div id="step-1" class="step active">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-mountain"></i> Farm Details</h3>
+                        <p>Basic information about your farm</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-sections">
+                            <!-- Land Information -->
+                            <div class="form-section">
+                                <h4 class="section-title">
+                                    <i class="fas fa-map-pin"></i>
+                                    Land Information
+                                </h4>
+                                <div class="form-group">
+                                    <label><i class="fas fa-map-pin"></i> Total Land Area</label>
+                                    <div class="input-group">
+                                        <input type="number" id="landArea" placeholder="e.g., 5.5" step="0.1" min="0">
+                                        <select id="landUnit">
+                                            <option value="acres">Acres</option>
+                                            <option value="hectares">Hectares</option>
+                                            <option value="kila">Kila</option>
+                                            <option value="biga">Biga</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-tint"></i> Land Type</label>
+                                    <div class="radio-group">
+                                        <div class="radio-option">
+                                            <input type="radio" id="nahri" name="landType" value="nahri" checked>
+                                            <label for="nahri">
+                                                <i class="fas fa-tint"></i>
+                                                <div>
+                                                    <div class="radio-title">Nahri (Irrigated)</div>
+                                                    <div class="radio-subtitle">Canal/Tube well irrigated</div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="radio-option">
+                                            <input type="radio" id="birani" name="landType" value="birani">
+                                            <label for="birani">
+                                                <i class="fas fa-cloud-rain"></i>
+                                                <div>
+                                                    <div class="radio-title">Birani (Rain-fed)</div>
+                                                    <div class="radio-subtitle">Rain-fed agriculture</div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Soil Information -->
+                            <div class="form-section">
+                                <h4 class="section-title">
+                                    <i class="fas fa-mountain"></i>
+                                    Soil Information
+                                </h4>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-mountain"></i> Soil Type</label>
+                                        <select id="soilType">
+                                            <option value="">Select your soil type</option>
+                                            <option value="alluvial">Alluvial Soil</option>
+                                            <option value="black">Black Soil</option>
+                                            <option value="red">Red Soil</option>
+                                            <option value="sandy">Sandy Soil</option>
+                                            <option value="laterite">Laterite Soil</option>
+                                            <option value="peaty">Peaty Soil</option>
+                                            <option value="saline">Saline Soil</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="fas fa-flask"></i> Soil pH Level</label>
+                                        <input type="number" id="soilPH" placeholder="e.g., 6.5" step="0.1" min="0" max="14">
+                                        <small class="help-text">Normal range: 6.0 - 7.5</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Water Information -->
+                            <div class="form-section">
+                                <h4 class="section-title">
+                                    <i class="fas fa-tint"></i>
+                                    Water Information
+                                </h4>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-tint"></i> Water Type</label>
+                                        <select id="waterType">
+                                            <option value="">Select your water type</option>
+                                            <option value="freshwater">Freshwater</option>
+                                            <option value="slightly-saline">Slightly Saline</option>
+                                            <option value="moderately-saline">Moderately Saline</option>
+                                            <option value="highly-saline">Highly Saline</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="fas fa-flask"></i> Water pH Level</label>
+                                        <input type="number" id="waterPH" placeholder="e.g., 7.0" step="0.1" min="0" max="14">
+                                        <small class="help-text">Ideal range: 6.5 - 8.5</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-full" onclick="nextStep()">
+                            Next Step <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Crop Information -->
+            <div id="step-2" class="step">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-seedling"></i> Crop Information</h3>
+                        <p>Information about your crops and planting schedule</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label>Crop Season</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="kharif" name="cropSeason" value="kharif" checked>
+                                    <label for="kharif">
+                                        <i class="fas fa-seedling"></i>
+                                        <div>
+                                            <div class="radio-title">Kharif Crops (Monsoon)</div>
+                                            <div class="radio-subtitle">June - October</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="rabi" name="cropSeason" value="rabi">
+                                    <label for="rabi">
+                                        <i class="fas fa-wheat-awn"></i>
+                                        <div>
+                                            <div class="radio-title">Rabi Crops (Winter)</div>
+                                            <div class="radio-subtitle">November - April</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-leaf"></i> Crop Name (Optional)</label>
+                            <select id="cropName">
+                                <option value="">Select crop or leave empty for recommendations</option>
+                                <option value="none">No crop selected</option>
+                            </select>
+                        </div>
+
+                        <div id="date-fields" class="date-fields" style="display: none;">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label><i class="fas fa-calendar"></i> Date of Sowing</label>
+                                    <input type="date" id="sowingDate">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-calendar"></i> Estimated Harvest Date</label>
+                                    <input type="date" id="harvestDate">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="no-crop-message" class="info-message">
+                            <i class="fas fa-info-circle"></i>
+                            <div>
+                                <h4>No crop selected? We'll recommend the best options for you!</h4>
+                                <p>We'll suggest the best seeds, fertilizers, and farming aids based on your soil and water conditions.</p>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button class="btn btn-outline" onclick="previousStep()">Previous</button>
+                            <button class="btn btn-primary" onclick="submitForm()">
+                                Get Recommendations <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Results -->
+            <div id="step-3" class="step">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-check-circle"></i> Farm Analysis Complete</h3>
+                        <p>Detailed analysis and recommendations for each field</p>
+                    </div>
+                    <div class="card-content">
+                        <div id="results-container"></div>
+                    </div>
+                </div>
+
+                <div class="card summary-card">
+                    <div class="card-content">
+                        <div class="summary-header">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3>Analysis Complete!</h3>
+                                <p>We've analyzed your farm conditions and provided personalized recommendations. Contact our experts for detailed guidance.</p>
+                            </div>
+                        </div>
+                        <div class="summary-stats">
+                            <div class="stat">
+                                <div class="stat-number" id="fields-count">1</div>
+                                <div class="stat-label">Fields Analyzed</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number" id="total-area">0</div>
+                                <div class="stat-label">Total Acres (Equiv.)</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number" id="seed-options">0</div>
+                                <div class="stat-label">Seed Options</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number" id="total-products">0</div>
+                                <div class="stat-label">Total Products</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline btn-full" onclick="backToDashboard()">
+                    Back to Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

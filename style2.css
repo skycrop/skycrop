@@ -1,0 +1,83 @@
+.container-fluid-lg {
+  padding: 0 40px !important;
+}
+
+.location-box {
+  background-color: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: start !important;
+}
+
+
+.middle-box {
+    display: flex;
+    align-items: start !important;
+}
+
+.header-nav {
+    justify-content: space-between !important;
+}
+
+.header-nav .header-nav-middle {
+    margin: 0 !important;
+    z-index: 99999;
+}
+
+header .top-nav .navbar-top .middle-box .search-box .input-group .form-control {
+  width: 300px;
+}
+
+.product-section .container-fluid-lg {
+  padding: 0 40px !important;
+
+}
+.breadcrumb-section .breadcrumb-contain nav {
+  margin-left: 0 !important;
+}
+
+.profile-upload {
+  position: relative;
+  width: 120px;
+  margin: 0 auto 10px;
+}
+
+.profile-pic-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #0da487;
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-pic-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-icon {
+  position: absolute;
+  top: 50%;
+  background: #0da487;
+  color: #fff;
+  padding: 6px;
+  border-radius: 50%;
+  font-size: 14px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 25px;
+  width: 25px;
+  display: flex;
+}
+
+.profile-details-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+
